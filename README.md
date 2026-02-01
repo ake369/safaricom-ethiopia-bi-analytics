@@ -1,12 +1,13 @@
-# Safaricom Ethiopia: Revenue & Network Usage BI Pipeline
+# Safaricom Ethiopia Telecom Analytics Data Warehouse & BI Solution
+![Safaricom Logo](docs/Safaricom.png)
 
-![Safaricom Logo](docs/architecture.png)
 
 ## 📌 Project Overview
 This project demonstrates a full-scale Business Intelligence (BI) lifecycle designed for **Safaricom Ethiopia**. The goal is to provide executive-level insights into airtime revenue, data consumption (4G/5G), and regional subscriber growth by integrating data from a legacy Oracle Billing system into a modern SQL Server Data Warehouse.
 
 ### 🏗️ Architecture Flow
-**Oracle DB (Source)** ➡️ **SSIS (ETL)** ➡️ **MS SQL Server (DWH)** ➡️ **Power BI (Visualization)**
+
+![Safaricom Logo](docs/architecture.png)
 
 ---
 
