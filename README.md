@@ -12,7 +12,7 @@ This project demonstrates a full-scale Business Intelligence (BI) lifecycle desi
 ---
 
 ## 📊 Power BI Dashboard
-> **Note on Data Source:**  This project utilizes a simulated dataset designed to replicate the complexity and scale of Safaricom Ethiopia’s transactional environment. While the data is synthetic, it maintains the referential integrity and business logic required for production-level ETL and analytical reporting.
+> **Note on Data Source:**  This project utilizes a simulated dataset designed to replicate the complexity and scale of Safaricom Ethiopia’s transactional environment. While the data is synthetic, it maintains the referential integrity and business logic required for production-level ETL and analytical reporting. Two separate datasets utilized to develop two repots, displayed below.
 #### Executive Revenue Summary
 ![Power BI Report](docs/Report_1.png)
 ![Power BI Report](docs/Report_2.png)
