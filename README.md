@@ -1,5 +1,5 @@
 # Safaricom Ethiopia Telecom Analytics Data Warehouse & BI Solution
-![Safaricom Logo](docs/Safaricom.png)
+![Safaricom Logo](docs/SAFARICOM.jpg)
 
 
 ## 📌 Project Overview
