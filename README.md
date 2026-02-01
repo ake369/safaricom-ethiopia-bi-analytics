@@ -12,7 +12,9 @@ This project demonstrates a full-scale Business Intelligence (BI) lifecycle desi
 ---
 
 ## 📊 Power BI Dashboard
-> **Note:** Below is a placeholder for the project dashboard. To display your actual report, you can either embed a screenshot or a link to the Power BI Service.
+#### Report
+![Power BI Report](docs/Report_1.png)
+![Power BI Report](docs/Report_2.png)
 
 ### Executive Revenue Summary
 ![Safaricom Dashboard Screenshot](https://via.placeholder.com/800x450.png?text=Place+Your+Power+BI+Screenshot+Here)
