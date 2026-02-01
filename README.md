@@ -29,27 +29,43 @@ This project demonstrates a full-scale Business Intelligence (BI) lifecycle desi
 
 ---
 
-## 🚀 Step-by-Step Implementation
+## Implementation Steps
 
-### 1. Data Warehouse Development (SQL Server)
-The warehouse is built on a **Star Schema** to optimize query performance for millions of rows.
-* **Dimensions:** `DimSubscriber` (SCD Type 1), `DimDate` (Includes Ethiopian Calendar), `DimRegion`.
-* **Facts:** `FactRevenueUsage` (Granularity: Daily per Subscriber).
-* *Refer to `/Scripts/DWH_Schema.sql` for the full DDL.*
+### Phase 1: Data Warehouse Development (SQL Server)
+Navigate to the `01_Database_Scripts/Oracle_Source_Tables/` folder.  
+1. Run `01_Create_Source_Tables.sql` in SQL Server Management Studio (SSMS).  
+2. This creates the Star Schema:  
+   - **FactRevenueUsage**: Stores metrics (Revenue, MBs, Minutes).  
+   - **Dim_Customer**: SCD Type 1 for customer demographics.  
+   - **Dim_Date**: Time dimension including Ethiopian calendar attributes.  
+3. Then generate SAMPLE SAFARICOM ETHIOPIA synthetic dataset within SSMS by running the script `02_Sample_Data_Generator.sql` which is in the same folder.  
 
-### 2. ETL Process (SSIS)
-The ETL logic handles the data movement and ensures data integrity:
-1. **Extract:** Pulls raw transaction logs from Oracle using an OLE DB Source.
-2. **Transform:** - **Data Conversion:** Converts Oracle `VARCHAR2` to SQL `NVARCHAR`.
-   - **Lookup:** Validates subscriber IDs against the `DimSubscriber` table.
-   - **Derived Column:** Calculates Net Revenue after 15% VAT deduction.
-3. **Load:** Performs a "Fast Load" into the SQL Server Destination.
+---
 
-### 3. Power BI Modeling
-* **Data Connectivity:** SQL Server Import Mode.
-* **Modeling:** 1:N Relationships between Dimensions and Fact tables.
-* **DAX Measures:**
-  ```dax
-  Total Revenue (ETB) = SUM(FactRevenueUsage[Revenue])
-  Data Usage (TB) = SUM(FactRevenueUsage[DataMB]) / 1024 / 1024
-  YoY Revenue Growth = VAR PrevYear = CALCULATE([Total Revenue], SAMEPERIODLASTYEAR('DimDate'[FullDate])) RETURN DIVIDE([Total Revenue] - PrevYear, PrevYear)
+### Phase 2: ETL Logic (SSIS)
+1. **Connection**: Established ADO.NET/OLEDB connection to the Oracle Source.  
+2. **Extraction**: SQL query used to pull incremental logs from `TBL_RECHARGE_LOGS`.  
+3. **Transformation**:  
+   - Data Conversion: Mapped Oracle NUMBER to SQL Decimal.  
+   - Lookup: Mapped MSISDN to SubscriberSK from the Dimension table.  
+   - Derived Column: Calculated Tax (15% VAT) on top-ups.  
+4. **Loading**: Data is pushed into the SQL Server Fact table using Fast Load.  
+
+---
+
+### Phase 3: Power BI Modeling & Visualization
+1. **Data Import**: Connected to SQL Server using Import Mode.  
+2. **Data Modeling**: Established a 1-to-Many relationship between Dimensions and Facts.  
+3. **DAX Measures Created**:  
+   - `Total Revenue = SUM(FactRevenueUsage[Amount])`  
+   - `Revenue WoW % = DIVIDE([Total Revenue] - [Last Week Revenue], [Last Week Revenue])`  
+4. **Dashboard Features**:  
+   - Regional Top: Top Revenue across regions of Ethiopia (Addis, Dire Dawa, Bahir Dar, ...).  
+   - Trend Analysis: Daily data usage per customers.  
+
+---
+
+## 5. How to Run This Project
+1. Clone the Repo:  
+   ```bash
+   git clone https://github.com/ake369/Safaricom-BI-Project.git
