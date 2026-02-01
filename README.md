@@ -69,3 +69,22 @@ Navigate to the `01_Database_Scripts/Oracle_Source_Tables/` folder.
 1. Clone the Repo:  
    ```bash
    git clone https://github.com/ake369/Safaricom-BI-Project.git
+
+- Setup DB: Execute scripts in SQL Server to create the SQLServer_DW.
+- Configure SSIS: Update the Connection Managers in the .dtsx package with your local Oracle/SQL credentials.
+- Run ETL: Execute the SSIS package to populate the warehouse.
+- View Report: Open the .pbit file in Power BI and point it to your local SQL Server.
+
+6. Sample Insights
+- Regional Growth: Total revenue
+- Top performer region in terms of transactions
+- Top customer
+- Payment method per sum customer
+- Data usage per service type
+
+📖 Publisher Information
+- Project Author/Publisher: Akalu Abraham (BI Specialist)
+- Version: 1.0.0
+- License: MIT License
+- Contact: ake.abrish@gmail.com
+
